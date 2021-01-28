@@ -15,7 +15,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 
 
-class CustomStepper(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs) {
+class CustomStepperLinearLayout(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs) {
 
     var totalSteps = 2
     var currentStep = 1
@@ -24,7 +24,6 @@ class CustomStepper(context: Context?, attrs: AttributeSet?) : LinearLayout(cont
         orientation = HORIZONTAL
         gravity = Gravity.CENTER
         initParams(attrs)
-        drawCanvas()
         generate()
     }
 
@@ -41,43 +40,23 @@ class CustomStepper(context: Context?, attrs: AttributeSet?) : LinearLayout(cont
 
     }
 
-    private fun drawCanvas(){
-        val borderPaint = Paint()
-        borderPaint.style = Paint.Style.FILL
-        borderPaint.color = Color.CYAN
-        borderPaint.isAntiAlias = true
-        borderPaint.isDither = true
 
-        val fillPaint = Paint()
-        fillPaint.style = Paint.Style.FILL
-        fillPaint.color = Color.GREEN
-        fillPaint.isAntiAlias = true
-        fillPaint.isDither = true
-
-        val canvas = Canvas()
-        canvas.drawCircle(0f, 0f, 5f, fillPaint)
-
-
-    }
 
     private fun generate(){
 
+        // falta la logica que genera los elementos a partir de los atributos entregados
         for(i in 1..totalSteps){
 
         }
 
-        val circle = ContextCompat.getDrawable(context, R.drawable.stepper_circle)
-        val bar = ContextCompat.getDrawable(context, R.drawable.stepper_bar)
+        addView(getCircle(true))
+        addView(getBar(false))
+        addView(getBar(false))
+        addView(getCircle(false))
+        addView(getBar(false))
+        addView(getBar(false))
+        addView(getCircle(false))
 
-        fun Int.toPx() = (this * context.resources.displayMetrics.density).toInt()
-
-        val verticalInset: Int = (((circle?.intrinsicHeight ?: 0) - (bar?.intrinsicHeight ?: 0)) / 2)
-
-        val finalDrawable = LayerDrawable(arrayOf(circle, bar))
-        finalDrawable.setLayerInset(0, 20, 20, (bar?.intrinsicWidth ?: 0)+60,20 )
-        finalDrawable.setLayerInset(1,60,verticalInset+20,0, verticalInset+20)
-
-        background = finalDrawable
     }
 
     private fun getCircle(isSelected: Boolean) = View(context).apply {
