@@ -51,9 +51,7 @@ class CustomStepperLinearLayout(context: Context?, attrs: AttributeSet?) : Linea
 
         addView(getCircle(true))
         addView(getBar(false))
-        addView(getBar(false))
         addView(getCircle(false))
-        addView(getBar(false))
         addView(getBar(false))
         addView(getCircle(false))
 
@@ -61,15 +59,15 @@ class CustomStepperLinearLayout(context: Context?, attrs: AttributeSet?) : Linea
 
     private fun getCircle(isSelected: Boolean) = View(context).apply {
         background = ContextCompat.getDrawable(context, R.drawable.stepper_circle)
-        val size = (11f * context.resources.displayMetrics.density).toInt()
+        val size = (7f * context.resources.displayMetrics.density).toInt()
         layoutParams = LayoutParams(size, size)
         if(isSelected)  backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.purple_700))
     }
 
    private fun getBar(isSelected: Boolean) = View(context).apply {
        background = ContextCompat.getDrawable(context, R.drawable.stepper_bar)
-       val height = (3f * context.resources.displayMetrics.density).toInt()
-       val width = (50f * context.resources.displayMetrics.density).toInt()
+       val height = (2f * context.resources.displayMetrics.density).toInt()
+       val width = (62f * context.resources.displayMetrics.density).toInt()
        layoutParams = LayoutParams(width, height)
 
        val margin = 1.5f
